@@ -13,10 +13,6 @@ AGV(Automated Guided Vehicle) 교통 제어 알고리즘을 시각적으로 테�
   - AGV별 이동 속도, 작업 대기 시간, 왕복 횟수 설정
   - Play, Pause, Step, Reset 제어
 - 교통 제어 시각화
-  - RHCR(Rolling Horizon Collision Resolution) 방식의 주기적 재계획
-  - PBS(Priority-Based Search) window solver 기반 경로 계획
-  - 노드/엣지 충돌, swap conflict, 동일 엣지 점유 충돌 감지
-  - 예약 엣지, 계획 경로, conflict zone, deadlock 상태 표시
 - 샘플 맵 로드
   - `Load Sample Map` 버튼으로 기본 맵과 AGV 3대를 바로 구성
 
@@ -87,13 +83,6 @@ python main.py
 
 교통 제어는 `TrafficController`와 `PBSWindowSolver`가 담당합니다.
 
-- RHCR 시뮬레이션 window: `5` tick
-- RHCR planning window: `25` tick
-- 매 planning 주기마다 현재 AGV 상태를 기준으로 windowed MAPF 문제를 풉니다.
-- PBS solver는 AGV 간 우선순위 제약을 탐색하면서 각 AGV의 state-time A* 경로를 생성합니다.
-- 실행 단계에서는 다음 이동이 예약, 노드 점유, 엣지 충돌, swap conflict를 일으키는지 검사합니다.
-- 일정 시간 이상 전체 AGV가 움직이지 못하면 deadlock 상태로 판단합니다.
-
 ## 파일 구조
 
 ```text
@@ -104,8 +93,8 @@ python main.py
 ├── graph_canvas.py                 # 그래프/AGV 시각화 캔버스
 ├── graph_model.py                  # 노드/엣지 그래프 모델
 ├── models.py                       # AGV, 충돌, 예약 관련 dataclass
-├── traffic_controller.py           # RHCR 기반 교통 제어 로직
-├── pbs_window_solver.py            # PBS window solver
+├── traffic_controller.py           # Traffic Control 알고리즘
+├── pbs_window_solver.py            # PBS
 ├── constants.py                    # UI/시뮬레이션 상수
 └── legacy_traffic_algorithm_commented.py
 ```
