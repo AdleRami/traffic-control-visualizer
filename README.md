@@ -105,3 +105,5 @@ python main.py
 - 차수가 3 이상인 노드는 UI 표시용 conflict zone 중심으로 계산됩니다.
 - 그래프를 수정하면 기존 계획, 예약, lock 상태가 무효화되고 다음 실행에서 다시 계획합니다.
 - `legacy_traffic_algorithm_commented.py`는 이전 알고리즘을 주석과 함께 보존한 참고 파일입니다.
+- 단 모든 agv는 1 tick당 1 node씩 움직인다는 가정.
+- Traffic Control 알고리즘의 흐름 확인을 위한 간단한 Simulator
